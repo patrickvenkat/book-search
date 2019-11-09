@@ -29,7 +29,6 @@ class App extends Component {
     API.getBooks(this.state.bookSearch)
       .then(res => this.setState({ books: res.data.items }))
       .catch(err => console.log(err));
-      console.log(this.state.books);
   };
 
   render() {
