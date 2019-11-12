@@ -16,7 +16,9 @@ export function BookListItem({
   title,
   authors,
   description,
-  href
+  href,
+  saveBook,
+  bookid
 }) {
   return (
     <li className="list-group-item">
@@ -34,6 +36,12 @@ export function BookListItem({
               Link to the book!
               </a>
             </h3>
+            <div>
+              {/* <a className="btn btn-primary btn-lg" href="#" role="button" id="${buttonid}">Save this book</a> */}
+              <a className="btn btn-primary btn-lg" href="#" role="button" onClick={() => saveBook(bookid)}>
+                Save this book
+              </a>
+            </div>
           </Col>
         </Row>
       </Container>

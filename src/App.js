@@ -27,9 +27,37 @@ class App extends Component {
     event.preventDefault();
     // console.log(this.state.bookSearch);
     API.getBooks(this.state.bookSearch)
-      .then(res => this.setState({ books: res.data.items }))
-      .catch(err => console.log(err));
+       .then(res => this.setState({ books: res.data.items }))
+       .catch(err => console.log(err));
   };
+
+  saveBook = (id) => {
+    // console.log("id" + id);
+    if (this.state.books.indexOf(id) === -1){
+      console.log("if1 " + id);
+      console.log(this.state.books.indexOf(id));
+      console.log(this.state.books[0]);
+      
+      // app.post("/savebook", this.state.books[0]);
+      API.saveBook(this.state.books[0])
+         .then(console.log("Done with save book call"))
+         .catch(err => console.log(err));
+    }
+    else{
+      console.log("else " + id);
+    }
+  };
+
+
+  // API.saveBook({
+  //   title: this.state.title,
+  //   author: this.state.author,
+  //   synopsis: this.state.synopsis
+  // })
+  //   .then(res => this.loadBooks())
+  //   .catch(err => console.log(err));
+
+
 
   render() {
     return (
@@ -79,6 +107,8 @@ class App extends Component {
                         description={book.volumeInfo.description}           
                         thumbnail={book.volumeInfo.imageLinks.thumbnail}
                         href={book.volumeInfo.infoLink}
+                        saveBook={this.saveBook}
+                        bookid={book.id}
                       />
                     );
                   })}
